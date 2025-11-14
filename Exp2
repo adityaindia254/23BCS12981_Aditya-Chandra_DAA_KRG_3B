@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class PowerFunctionLogN {
+    static double power(double x, int y) {
+        if (y == 0)
+            return 1;
+        double temp = power(x, y / 2);
+        if (y % 2 == 0)
+            return temp * temp;
+        else {
+            if (y > 0)
+                return x * temp * temp;
+            else
+                return (temp * temp) / x;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter base: ");
+        double base = sc.nextDouble();
+        System.out.print("Enter exponent: ");
+        int exponent = sc.nextInt();
+        double result = power(base, exponent);
+        System.out.println(base + " raised to " + exponent + " is: " + result);
+        sc.close();
+    }
+}
