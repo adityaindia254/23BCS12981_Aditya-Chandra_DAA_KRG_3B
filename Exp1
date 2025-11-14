@@ -1,0 +1,84 @@
+class Stack<T> {
+    private int maxSize;
+    private T[] stackArray;
+    private int top;
+
+    @SuppressWarnings("unchecked")
+    public Stack(int size) {
+        this.maxSize = size;
+        this.stackArray = (T[]) new Object[size];
+        this.top = -1;
+    }
+
+    public void push(T value) {
+        if (isFull()) {
+            System.out.println("Stack Overflow! Cannot push: " + value);
+        } else {
+            stackArray[++top] = value;
+            System.out.println("Pushed: " + value);
+        }
+    }
+
+    public T pop() {
+        if (isEmpty()) {
+            System.out.println("Stack Underflow! Cannot pop element.");
+            return null;
+        } else {
+            T value = stackArray[top--];
+            System.out.println("Popped: " + value);
+            return value;
+        }
+    }
+
+    public T peek() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty. No top element.");
+            return null;
+        } else {
+            System.out.println("Top Element: " + stackArray[top]);
+            return stackArray[top];
+        }
+    }
+
+    public boolean isEmpty() {
+        return top == -1;
+    }
+
+    public boolean isFull() {
+        return top == maxSize - 1;
+    }
+
+    public void display() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty.");
+        } else {
+            System.out.print("Stack elements: ");
+            for (int i = 0; i <= top; i++) {
+                System.out.print(stackArray[i] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+public class GenericStackDemo {
+    public static void main(String[] args) {
+        Stack<Integer> intStack = new Stack<>(5);
+        intStack.push(10);
+        intStack.push(20);
+        intStack.push(30);
+        intStack.display();
+        intStack.peek();
+        intStack.pop();
+        intStack.display();
+
+        Stack<String> stringStack = new Stack<>(3);
+        stringStack.push("A");
+        stringStack.push("B");
+        stringStack.push("C");
+        stringStack.display();
+        stringStack.pop();
+        stringStack.peek();
+        stringStack.display();
+    }
+}
